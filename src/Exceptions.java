@@ -1,2 +1,6 @@
-package PACKAGE_NAME;public class Exceptions {
+public class Exceptions {
+
+
+    public Exceptions(String message) {
+    }
 }

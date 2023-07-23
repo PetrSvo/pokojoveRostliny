@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Plants {
+public class Plants extends Throwable {
 
     private String name;
     private String notes; //poznámky
