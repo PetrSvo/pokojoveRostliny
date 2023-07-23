@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -23,9 +24,9 @@ public class PlantsManager {
     //Metoda pro načtení souboru
 
 
-    File file1=new File("Tento počítač/Plocha/Open JDK/moje soubory z programování/pokojovéRostliny/out/kvetiny.txt");
-    File file2=new File("Tento počítač/Plocha/Open JDK/moje soubory z programování/pokojovéRostliny/out/kvetiny-spatne-datum.txt");
-    File file3=new File("Tento počítač/Plocha/Open JDK/moje soubory z programování/pokojovéRostliny/out/kvetiny-spatne-frekvence.txt");
+    File file1=new File("C:\\Users\\svobp\\Desktop\\Open JDK\\moje soubory z programování\\pokojoveRostliny\\out\\kvetiny.txt");
+    File file2=new File("C:\\Users\\svobp\\Desktop\\Open JDK\\moje soubory z programování\\pokojoveRostliny\\out\\kvetiny-spatne-datum.txt");
+    File file3=new File("C:\\Users\\svobp\\Desktop\\Open JDK\\moje soubory z programování\\pokojoveRostliny\\out\\/kvetiny-spatne-frekvence.txt");
 
     public void loadDataFromFile(String filename, String delimiter) throws Plants, PlantsException {
         String[] items =new String[0];
@@ -47,10 +48,8 @@ public class PlantsManager {
         }  //připadně doplnit i chyby v rádcích, např. spatné |LocalDate
     }
 
-    private class PlantsException extends Throwable {
-        public PlantsException(String s) {
-        }
-    }
+
+
 
     //Metoda pro vraceni aktualizovaného seznamu kvetin do souboru
 
@@ -58,4 +57,48 @@ public class PlantsManager {
     public List<Plants> getPlantsList() {
         return new ArrayList<>(plantsList);
     }
+
+    int frequencyNull; //vyjímka - čislo zalevání 0 nebo zaporná
+
+
+    //Metoda ošetřeni vyjimky pro zadaní čísla zalivky 0 a záporné
+    public void setFrequencyNull (int frequencyOfWatering) throws PlantsExceptions {
+        if (frequencyOfWatering < 1) {
+            throw new PlantsExceptions("Frekvence zalevani nesmi byt " + frequencyOfWatering);
+        }
+        int frequencyNull = frequencyOfWatering;
+    }
+
+    //Takto by to mělo jít jednodušeji přímo se setrem
+    public  void setFrequencyOfWatering (int frequencyOfWatering) throws PlantsExceptions {
+        if (frequencyOfWatering<1){
+            throw  new PlantsExceptions("Frekvence zalevani nesmi byt " + frequencyOfWatering);
+        } int setFrequencyOfWatering= frequencyOfWatering;
+    }
+    public int getFrequencyNull() {return frequencyNull;}
+
+    //Metoda  vyjimky, aby datum poslední zalivky nebo starsi nez datum zasazeni
+
+    LocalDate altDate;
+    public void setAltDate(LocalDate planted,LocalDate watering) throws PlantsExceptions {
+        if (altDate.isAfter(watering)) {
+            throw new PlantsExceptions("Datum"+planted+"nesmí být drive nez datum"+watering);
+        }
+        LocalDate altDate=planted;
+    }
+
+    //jednodušeji se setrem
+    public void setPlanted(LocalDate planted,LocalDate watering) throws PlantsExceptions {
+        if (planted.isAfter(watering)) {
+            throw new PlantsExceptions("Datum"+planted+"nesmí být drive nez datum"+watering);
+        }
+        LocalDate setPlanted =planted;
+    }
+
+    public LocalDate getAltDate()
+    {return altDate;}
 }
+
+
+
+
