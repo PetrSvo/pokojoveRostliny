@@ -5,6 +5,8 @@ public class PlantsExceptions extends Throwable { //neni mi jasný proc nefunguj
     public PlantsExceptions (String message) {
         super(message);
     } //mělo by uložit chybova hlaseni
+
+
 }
 
 

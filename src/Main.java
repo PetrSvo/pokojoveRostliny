@@ -5,15 +5,15 @@ public class Main {
         try {
             plantsManager.loadDataFromFile(Settings.filename(), Settings.delimiter());
 
-        } catch (PlantsException e) {
+            } catch (PlantsException e)
+                {
 
+                    {
+                        System.err.println("Nebyl nalezen pozadovany soubor " + e.getLocalizedMessage());
+                    }
 
-            {
-                System.err.println("Nebyl nalezen pozadovany soubor " + e.getLocalizedMessage());
-            }
-
-
-        } catch (Plants e) {
+               } catch (Plants e)
+        {
             throw new RuntimeException(e); //Chce to Runtime ne Plants -nejde, ale aspon bey chyb
         }
 }

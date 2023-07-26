@@ -18,9 +18,12 @@ public class Plants extends Throwable {
         this.frequencyOfWatering = frequencyOfWatering;
     }
 
+
     public Plants (String name, LocalDate planted, int frequencyOfWatering){
         this(name,"" ,planted,LocalDate.now(),frequencyOfWatering);
     }
+
+
     public Plants (String name){
         this(name,"",LocalDate.now(),LocalDate.now(),7);
     }
@@ -66,6 +69,8 @@ public class Plants extends Throwable {
     public void setFrequencyOfWatering (int frequencyOfWatering) {
         this.frequencyOfWatering = frequencyOfWatering;
     }
+
+
 
 
     // Metoda getWateringInfo() - vrati nazev kvetiny, datum posledni zalivky a datum doporucené denní zalivky
